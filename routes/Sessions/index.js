@@ -2,7 +2,7 @@
 var express = require("express");
 
 
-module.exports = function (passport) {
+module.exports = function () {
     //Router
     var router = express.Router();
     //Load Modules
@@ -38,9 +38,7 @@ module.exports = function (passport) {
 **@access Public
 **/
 
-    router.post("/logout",
-        passport.authenticate('jwt', { session: false }),
-        (req, res) => {
+    router.post("/logout", (req, res) => {
 
             SesssionController.logout(req).then((result) => {
                 console.log("res", result);
@@ -69,7 +67,7 @@ module.exports = function (passport) {
             console.log("res", result);
 
             return res.status(200).json({
-                message: "Successfully Authenticated",
+                message: "Successfully user created",
                 data: result
             });
 

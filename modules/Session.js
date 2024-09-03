@@ -5,7 +5,7 @@ var AWS = require('aws-sdk'),
     fs = require('fs');
 
 //Initialize Models
-var User = require('../models/User');
+var User = require('../models/userAuth');
 // var ActivityLog = require('../models/ActivityLog');
 const keys = require("../config/keys");
 
@@ -25,7 +25,7 @@ exports.AdminSignUp = (body) => {
             } else {
                 var newUser = new User({
                     user_type: body.user_type,
-                    email: body.email,
+                    username: body.username,
                     password: body.password,
                 });
 
@@ -53,9 +53,10 @@ exports.Adminlogin = (body) => {
     // return User.register(body);
 
     return new Promise((resolve, reject) => {
-        User.findOne({ email: body.email }).then((user) => {
+        User.findOne({ username: body.username }).then((user) => {
             // console.log("user",user);
-            if(user && user.user_type === 'super_user'){
+            // if(user && user.user_type === 'super_user'){
+            if (user) {
 
                 bcrypt.compare(body.password, user.password, function(err, isMatch) {
                     if (err) {
@@ -66,7 +67,7 @@ exports.Adminlogin = (body) => {
                       console.log("Password matches!")
                       var payload = {
                         id: user.id,
-                        name: user.name,
+                        username: user.username,
                         mobile: user.mobile,
                         email:user.email,
                         role:user.role,
