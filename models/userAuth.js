@@ -15,7 +15,15 @@ const userSchema = new Schema({
     minlength:6,
     
   },
-  user_type:String
+  user_type:String,
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now
+  }
   
 })
 

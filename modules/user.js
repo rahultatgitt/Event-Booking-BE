@@ -9,6 +9,7 @@ var User = require('../models/User');
 const keys = require("../config/keys");
 // var Otp = require('../models/OTP');
 const crypto = require('crypto');
+const ticket = require('../models/ticket');
 
 // Define TPA signup Module
 exports.AdminSignUp = (body) => {
