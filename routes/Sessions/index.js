@@ -14,7 +14,7 @@ module.exports = function () {
     **@desc fetch list of policy configs
     **@access Public
     **/
-
+    // login fixed
     router.post("/", (req, res) => {
 
         SesssionController.Adminlogin(req.body).then((result) => {
